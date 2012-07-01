@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>greg's weblog</title>
+<link href="css/reset.css" rel="stylesheet" type="text/css" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<link href="http://fonts.googleapis.com/css?family=Ubuntu:400,500italic,500,400italic" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="left">
+	<div id="header">
+		<div class="left">
+			<h1>greg's weblog</h1>
+			<h2>the more I learn, the less I know</h2>
+		</div>
+		<div class="right">
+			<form><input type="text" name="query" /></form>
+			<div class="nav">
+				<a href="/about">About</a> | <a href="/contact">Contact</a> | <a href="/rss">RSS Feed</a>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+{feed.blog}
+	<div id="activity">
+		<div id="twitter">
+			<div class="header">Twitter</div>
+			<ul>
+				{feed.twitter}
+			</ul>
+		</div>
+		<div id="delicious">
+			<div class="header">Delicious</div>
+			<ul>
+				{feed.delicious}
+			</ul>
+		</div>
+		<div id="github">
+			<div class="header">Github</div>
+			<ul>
+				{feed.github}
+			</ul>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div id="footer">
+		<p><strong>&copy; 2005-{{year}} Greg Knapp</strong><br />
+	    Opinions expressed here are my own and do not represent those of my employer.</p>
+	</div>
+</div>
+<div id="right">
+{feed:flickr}
+</div>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="js/events.js"></script>
+</body>
+</html>

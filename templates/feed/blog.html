@@ -1,0 +1,29 @@
+<!--
+	<div id="entries">
+	    <h3>Migrating from iOS to Android</h3>
+	    <p>I’ve owned an iPhone since September 2008, so almost 4 years. On 
+	    Thursday I received my HTC One S from Amazon. I’m still learning my way around but as they’re fresh 
+	    in my mind, I thought I’d make note of obstacles I ran up against as an Android noobie.</p>
+	    <p><a href="#">Read more &raquo;</a></p>
+	    <h4>Other Entries</h4>
+	    <ul id="older">
+	    	<li><a href="http://gregk.me">Should statics be removed from PHP?</a></li>
+	    	<li><a href="http://gregk.me">PHP UK Conference 2012</a></li>
+	    	<li><a href="http://gregk.me">Linode bound</a></li>
+	    	<li><a href="http://gregk.me">Think rate is fixed</a></li>
+	    	<li><a href="http://gregk.me">Installing nginx on OSX Snow Leopard</a></li>
+	    </ul>
+	</div>
+-->
+
+	<div id="entries">
+	    <h3>{{title}}</h3>
+	    <p>{{intro}}</p>
+	    <p><a href="{{url}}">Read more &raquo;</a></p>
+	    <h4>Other Entries</h4>
+	    <ul id="older">
+	    {loop link;5}
+	    	<li><a href="{{link.href}}">{{link.caption}}</a></li>
+	    {/loop}
+	    </ul>
+	</div>

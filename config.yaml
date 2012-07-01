@@ -1,0 +1,21 @@
+# Deft configuration file
+# http://github.com/gknapp/deft
+
+development: &defaults
+  docroot: httpdocs
+  layout: 
+    name: default
+    path: templates/layout
+    plugins:
+      - { feed.flickr:  Deft\Feed\Flickr }
+      - { feed.twitter: Deft\Feed\Twitter }
+      - { feed.github:  Deft\Feed\Github }
+  db:
+    adapter:  mysql
+    host:     localhost
+    username: greg
+    password: letmein
+    database: deft
+
+production:
+  extends: *defaults
