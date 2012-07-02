@@ -2,7 +2,9 @@
 
 namespace Deft\Parser\Macro;
 
-class Year {
+use Deft\Parser\Macro as Macro;
+
+class Year implements Macro {
 	
 	public function __invoke() {
 		return date('Y');

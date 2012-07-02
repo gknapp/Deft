@@ -1,7 +1,9 @@
 <?php
 
 namespace Deft;
+
 use Deft\FileManager as FileManager;
+use Deft\Parser\Macro as Macro;
 
 class Parser {
 
@@ -18,7 +20,7 @@ class Parser {
 		$this->plugins[$name] = $handler;
 	}
 
-	public function registerMacro($name, $handler) {
+	public function registerMacro($name, Macro $handler) {
 		$this->macros[$name] = $handler;
 	}
 

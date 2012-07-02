@@ -2,4 +2,6 @@
 
 namespace Deft\Parser;
 
-interface Macro {}
+interface Macro {
+	public function __invoke();
+}
