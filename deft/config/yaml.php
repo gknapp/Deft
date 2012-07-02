@@ -2,13 +2,13 @@
 
 namespace Deft\Config;
 
-use Deft\Config\Accessor as Accessor;
 use Deft\Config as Config;
 use Deft\FileManager as FileManager;
 
-class Yaml extends Accessor implements Config {
+class Yaml implements Config {
 
 	private $fileManager;
+	private $data;
 
 	public function __construct(FileManager $fileManager) {
 		if (!function_exists('yaml_parse')) {
@@ -18,6 +18,18 @@ class Yaml extends Accessor implements Config {
 		}
 
 		$this->fileManager = $fileManager;
+	}
+
+	public function __get($name) {
+		if (array_key_exists($name, $this->data)) {
+			if (is_array($this->data[$name])) {
+				return (object) $this->data[$name];
+			} else {
+				return $this->data[$name];
+			}
+		}
+
+		return null;
 	}
 
 	public function load($file) {

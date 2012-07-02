@@ -1,25 +1,35 @@
 <?php
 
+define('DIR_SEP', DIRECTORY_SEPARATOR);
+
+include_once 'deft' . DIR_SEP . 'autoloader.php';
+
+use Deft\FileManager as FileManager;
+use Deft\Config as Config;
+use Deft\Config\Yaml as YamlConfig;
+use Deft\Autoloader as Autoloader;
+use Deft\Parser\Factory as ParserFactory;
+
 class Deft {
 	
 	protected $config;
 	protected $fileManager;
 
-	public function __construct($config = null, $autoloader = null, $fileManager = null) {
+	public function __construct($config = null, $fileManager = null) {
 		$this->prependIncludePath();
-		$this->registerAutoloader($autoloader);
+		$this->registerAutoloader();
 
 		if (null == $fileManager) {
-			$fileManager = new Deft\FileManager;
+			$fileManager = new FileManager;
 		}
 
-		if (!$config instanceof Deft\Config) {
-			$config = new Deft\Config\Yaml($fileManager);
-			$config->load(__DIR__ . DIRECTORY_SEPARATOR . 'config.yaml');
+		if (!$config instanceof Config) {
+			$config = new YamlConfig($fileManager);
+			$config->load(__DIR__ . DIR_SEP . 'config.yaml');
 		}
 
-		$this->config = $config;
 		$this->fileManager = $fileManager;
+		$this->config = $config;
 	}
 
 	private function prependIncludePath() {
@@ -31,34 +41,34 @@ class Deft {
 		}
 	}
 
-	private function registerAutoloader($autoloader) {
-		include_once 'deft' . DIRECTORY_SEPARATOR . 'autoloader.php';
-
-		if (!is_callable($autoloader)) {
-			$loader = new Deft\Autoloader;
-			$autoloader = array($loader, 'load');
-		}
-
-		spl_autoload_register($autoloader);
+	private function registerAutoloader() {
+		spl_autoload_register(new Autoloader);
 	}
 
-	public function publish() {
+	public function publish($parserFactory = null) {
 		try {
-			$this->attemptPublish();
+			$this->attemptPublish($parserFactory);
 		} catch (Exception $ex) {
 			error_log($ex->getMessage());
 		}
 	}
 
-	public function attemptPublish() {
-		$layoutFile = __DIR__ . DIRECTORY_SEPARATOR
-					. $config->layout->path . DIRECTORY_SEPARATOR
-					. $config->layout->name . '.html';
-		$layout = new Deft\Layout(
-			$this->fileManager,
-			$this->config->layout->plugins
-		);
-		$layout->parse($layoutFile);
+	private function attemptPublish($parserFactory) {
+		$layoutFile = $this->config->layout->path . DIR_SEP . 'default.html';
+		$layout = $this->fileManager->loadAsArray($layoutFile);
+
+		if (!is_readable($layoutFile)) {
+			throw new RuntimeException('Layout not found: ' . $layoutFile);
+		}
+
+		if (null == $parserFactory) {
+			$parserFactory = new ParserFactory($this->config);
+		}
+
+		$parser = $parserFactory->create($this->fileManager);
+		$document = $parser->parse($layout);
+		// $this->fileManager->save($document, '');
+		echo $document;
 	}
 
 }

@@ -3,7 +3,7 @@
 namespace Deft\Config;
 use Deft\Config\Node as Node;
 
-abstract class Accessor {
+abstract class Accessor extends stdClass {
 
 	protected $data;
 
@@ -19,7 +19,4 @@ abstract class Accessor {
 		return null;
 	}
 
-	public function __isset($name) {
-		return isset($this->data[$name]);
-	}
 }

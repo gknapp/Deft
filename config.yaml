@@ -2,10 +2,9 @@
 # http://github.com/gknapp/deft
 
 development: &defaults
-  docroot: httpdocs
+  docroot: /Volumes/Data/greg/code/deft/httpdocs
   layout: 
-    name: default
-    path: templates/layout
+    path: /Volumes/Data/greg/code/deft/templates/layout
     plugins:
       - { feed.flickr:  Deft\Feed\Flickr }
       - { feed.twitter: Deft\Feed\Twitter }
