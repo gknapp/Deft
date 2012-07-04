@@ -25,7 +25,7 @@ class Deft {
 
 		if (!$config instanceof Config) {
 			$config = new YamlConfig($fileManager);
-			$config->load(__DIR__ . DIR_SEP . 'config.yaml');
+			$config->load(__DIR__ . DIR_SEP . 'config.yml');
 		}
 
 		$this->fileManager = $fileManager;
