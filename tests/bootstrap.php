@@ -12,6 +12,4 @@ if (!in_array($deft, $paths)) {
 }
 
 include_once 'deft/autoloader.php';
-
-$loader = new Deft\AutoLoader;
-spl_autoload_register(array($loader, 'load'));
+spl_autoload_register(new Deft\AutoLoader);
