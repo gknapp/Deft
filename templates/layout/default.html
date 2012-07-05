@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>greg's weblog</title>
+<title>{blog.name}</title>
 <link href="css/reset.css" rel="stylesheet" type="text/css" />
 <link href="css/style.css" rel="stylesheet" type="text/css" />
 <link href="http://fonts.googleapis.com/css?family=Ubuntu:400,500italic,500,400italic" rel="stylesheet" type="text/css">
@@ -11,8 +11,8 @@
 <div id="left">
 	<div id="header">
 		<div class="left">
-			<h1>greg's weblog</h1>
-			<h2>the more I learn, the less I know</h2>
+			<h1>{blog.name}</h1>
+			<h2>{blog.strapline}</h2>
 		</div>
 		<div class="right">
 			<form><input type="text" name="query" /></form>
@@ -22,35 +22,35 @@
 		</div>
 		<div class="clear"></div>
 	</div>
-	{feed.blog}
+	{blog.entries}
 	<div id="activity">
 		<div id="twitter">
 			<div class="header">Twitter</div>
 			<ul>
-				{feed.twitter}
+				{twitter.feed}
 			</ul>
 		</div>
 		<div id="delicious">
 			<div class="header">Delicious</div>
 			<ul>
-				{feed.delicious}
+				{delicious.feed}
 			</ul>
 		</div>
 		<div id="github">
 			<div class="header">Github</div>
 			<ul>
-				{feed.github}
+				{github.feed}
 			</ul>
 		</div>
 		<div class="clear"></div>
 	</div>
 	<div id="footer">
-		<p><strong>&copy; 2005-{{year}} Greg Knapp</strong><br />
+		<p><strong>&copy; 2005-{{year}} {blog.author}</strong><br />
 	    Opinions expressed here are my own and do not represent those of my employer.</p>
 	</div>
 </div>
 <div id="right">
-	{feed:flickr}
+	{flickr.feed}
 </div>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
 <script type="text/javascript" src="js/events.js"></script>

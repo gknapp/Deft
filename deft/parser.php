@@ -16,8 +16,7 @@ class Parser {
 	}
 
 	public function registerPlugin($plugin) {
-		list($name, $handler) = each($plugin);
-		$this->plugins[$name] = $handler;
+		$this->plugins[] = $plugin;
 	}
 
 	public function registerMacro($name, Macro $handler) {
@@ -44,6 +43,15 @@ class Parser {
 	}
 
 	private function parsePlugins($line) {
+		foreach ($this->plugins as $plugin) {
+			try {
+				if ($plugin->isIn($line)) {
+					$line = $plugin->interpolate($line);
+				}
+			} catch (BadMethodCallException $ex) {
+				error_log($ex->getMessage());
+			}
+		}
 		return $line;
 	}
 

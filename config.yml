@@ -2,13 +2,13 @@
 # http://github.com/gknapp/deft
 
 development: &defaults
+  blog:
+    author: Greg Knapp
+    name: greg's weblog
+    strapline: "the more I learn, the less I know"
   docroot: /Volumes/Data/greg/code/deft/httpdocs
   layout: 
     path: /Volumes/Data/greg/code/deft/templates/layout
-    plugins:
-      - { feed.flickr:  Deft\Feed\Flickr }
-      - { feed.twitter: Deft\Feed\Twitter }
-      - { feed.github:  Deft\Feed\Github }
   db:
     adapter:  mysql
     host:     localhost
