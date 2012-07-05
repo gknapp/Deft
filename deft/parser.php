@@ -4,6 +4,7 @@ namespace Deft;
 
 use Deft\FileManager as FileManager;
 use Deft\Parser\Macro as Macro;
+use \BadMethodCallException as BadMethodCallException;
 
 class Parser {
 

@@ -2,6 +2,8 @@
 
 namespace Deft;
 
+use \BadMethodCallException as BadMethodCallException;
+
 abstract class Plugin {
 	
 	protected $name;
