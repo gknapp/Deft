@@ -1,22 +1,23 @@
 <?php
 
-namespace Deft;
+namespace Deft\Core;
 
-use Deft\FileManager as FileManager;
-use Deft\Parser\Macro as Macro;
-use \BadMethodCallException as BadMethodCallException;
+use Deft\Core\FileManager, Deft\Plugin, Deft\Macro;
+use BadMethodCallException;
 
 class Parser {
 
 	private $fileManager;
 	private $plugins;
+	private $macros;
 
 	public function __construct(FileManager $fileManager) {
 		$this->fileManager = $fileManager;
 		$this->plugins = array();
+		$this->macros = array();
 	}
 
-	public function registerPlugin($plugin) {
+	public function registerPlugin(Plugin $plugin) {
 		$this->plugins[] = $plugin;
 	}
 

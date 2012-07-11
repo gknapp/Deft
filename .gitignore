@@ -1,2 +1,4 @@
 .DS_Store
 httpdocs
+composer.phar
+composer.lock

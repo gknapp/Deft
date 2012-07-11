@@ -6,9 +6,8 @@ development: &defaults
     author: Greg Knapp
     name: greg's weblog
     strapline: "the more I learn, the less I know"
+    url: http://gregk.me
   docroot: /Volumes/Data/greg/code/deft/httpdocs
-  layout: 
-    path: /Volumes/Data/greg/code/deft/templates/layout
   db:
     adapter:  mysql
     host:     localhost

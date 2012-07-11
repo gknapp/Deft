@@ -1,6 +1,6 @@
 <?php
 
-namespace Deft;
+namespace Deft\Core;
 
 class Autoloader {
 	

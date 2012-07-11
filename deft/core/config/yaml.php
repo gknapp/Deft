@@ -1,9 +1,9 @@
 <?php
 
-namespace Deft\Config;
+namespace Deft\Core\Config;
 
-use Deft\Config as Config;
-use Deft\FileManager as FileManager;
+use Deft\Core\Config, Deft\Core\FileManager;
+use BadFunctionCallException, RuntimeException, UnexpectedValueException;
 
 class Yaml implements Config {
 

@@ -2,7 +2,7 @@
 
 namespace Deft\Plugin;
 
-use Deft\Plugin as Plugin;
+use Deft\Plugin;
 
 class Blog extends Plugin {
 
@@ -24,7 +24,4 @@ class Blog extends Plugin {
 		return $this->config->strapline;
 	}
 
-	public function entries() {
-		return 'Welcome to my blog';
-	}
 }

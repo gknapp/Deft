@@ -1,8 +1,8 @@
 <?php
 
-namespace Deft\Parser\Macro;
+namespace Deft\Macro;
 
-use Deft\Parser\Macro as Macro;
+use Deft\Macro;
 
 class Year implements Macro {
 	

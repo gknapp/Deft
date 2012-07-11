@@ -2,8 +2,6 @@
 
 namespace Deft;
 
-use \BadMethodCallException as BadMethodCallException;
-
 abstract class Plugin {
 	
 	protected $name;
@@ -19,7 +17,7 @@ abstract class Plugin {
 			function ($matches) use ($plugin) {
 				$method = $matches[1];
 				if (!method_exists($plugin, $method)) {
-					throw new BadMethodCallException(
+					throw new \BadMethodCallException(
 						"{$plugin->name}::{$method}(): method not found"
 					);
 				}
