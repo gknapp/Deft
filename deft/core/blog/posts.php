@@ -1,10 +1,8 @@
 <?php
 
-namespace Deft\Plugin;
+namespace Deft\Core\Blog;
 
-use Deft\Plugin;
-
-class Posts extends Plugin {
+class Posts {
 
 	private $posts;
 

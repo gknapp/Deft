@@ -1,4 +1,5 @@
 .DS_Store
 httpdocs
+vendor
 composer.phar
 composer.lock

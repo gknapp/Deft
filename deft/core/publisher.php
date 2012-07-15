@@ -2,7 +2,7 @@
 
 namespace Deft\Core;
 
-use Deft\Plugin\Posts\Post;
+use Deft\Core\Blog\Post;
 use dflydev\markdown\MarkdownParser;
 use \RuntimeException;
 
@@ -33,7 +33,7 @@ class Publisher {
 				$post = new Post(new MarkdownParser);
 				$post->parse($data);
 				echo $post->getTitle() . PHP_EOL;
-				echo $post->getBody() . PHP_EOL;
+				echo $post->getIntro() . PHP_EOL;
 				$posts[] = $post;
 			}
 		} catch (RuntimeException $ex) {

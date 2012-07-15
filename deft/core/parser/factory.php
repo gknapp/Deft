@@ -26,6 +26,7 @@ class Factory {
 	private function loadPlugins($fileManager) {
 		$pluginDir = dirname(__DIR__) . '/../plugin';
 		$plugins = array();
+		$ignore = array('feed');
 
 		if (!file_exists($pluginDir)) {
 			throw new RuntimeException('Plugin directory not found: ' . $pluginDir);
@@ -34,7 +35,7 @@ class Factory {
 		foreach ($fileManager->listDirectory($pluginDir, '.php') as $pluginFile) {
 			$pluginName = basename($pluginFile, '.php');
 
-			if ('blog' == $pluginName) {
+			if (in_array($pluginName, $ignore)) {
 				continue;
 			}
 			

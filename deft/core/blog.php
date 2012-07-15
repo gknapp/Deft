@@ -1,10 +1,8 @@
 <?php
 
-namespace Deft\Plugin;
+namespace Deft\Core;
 
-use Deft\Plugin;
-
-class Blog extends Plugin {
+class Blog {
 
 	private $config;
 
