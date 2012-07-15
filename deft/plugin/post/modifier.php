@@ -1,8 +1,7 @@
 <?php
 
 /**
- * Interface for feed plugins that need to read an HTTP feed
- * and persist the results locally (to the database).
+ * Interface for plugins that modify blog post output
  */
 
 namespace Deft\Plugin\Post;

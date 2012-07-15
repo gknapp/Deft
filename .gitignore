@@ -1,5 +1,6 @@
 .DS_Store
 httpdocs
+posts
 vendor
 composer.phar
 composer.lock
