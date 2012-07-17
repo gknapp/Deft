@@ -11,5 +11,5 @@ if (!in_array($deft, $paths)) {
     set_include_path(join(PATH_SEPARATOR, $paths));
 }
 
-include_once 'deft/autoloader.php';
-spl_autoload_register(new Deft\AutoLoader);
+require 'deft/core/autoloader.php';
+spl_autoload_register(new Deft\Core\AutoLoader);
