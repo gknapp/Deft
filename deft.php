@@ -38,8 +38,8 @@ class Deft {
 
 	private function createPublisher() {
 		$fileManager = new FileManager;
-		$plugins = $this->loadPlugins($fileManager);
 		$parser = new Parser($fileManager);
+		$plugins = $this->loadPlugins($fileManager);
 
 		foreach ($plugins as $plugin) {
 			$parser->registerPlugin($plugin);
