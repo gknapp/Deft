@@ -32,6 +32,10 @@ class FileManager {
 		return file_exists($file);
 	}
 
+	public function isReadable($file) {
+		return is_readable($file);
+	}
+
 	public function listDirectory($path, $extension) {
 		$list = array();
 		$extension = ltrim($extension, '.');

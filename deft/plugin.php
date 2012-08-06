@@ -2,12 +2,16 @@
 
 namespace Deft;
 
+use \ReflectionObject;
+
 abstract class Plugin {
 	
 	protected $name;
 
+	public function __construct() {}
+
 	public function isIn($line) {
-		return (false !== strpos($line, '{' . $this->getPluginName() . '.'));
+		return (false !== strpos($line, '{' . $this->getName() . '.'));
 	}
 
 	public function interpolate($line) {
@@ -27,10 +31,13 @@ abstract class Plugin {
 		);
 	}
 
-	protected function getPluginName() {
+	protected function getName() {
 		if (empty($this->name)) {
-			$class = new \ReflectionObject($this);
-			$this->name = strtolower($class->getShortName());
+			$class = new ReflectionObject($this);
+			$name = strtolower($class->getName());
+			$this->name = str_replace(
+				array('\\', 'deft.plugin'), array('.', ''), $name
+			);
 		}
 
 		return $this->name;

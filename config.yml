@@ -9,11 +9,9 @@ development: &defaults
     url: http://gregk.me
   docroot: /Volumes/Data/greg/code/deft/httpdocs
   db:
-    adapter:  mysql
-    host:     localhost
+    dsn: 'mysql:host=localhost;dbname=deft'
     username: greg
     password: letmein
-    database: deft
 
 production:
   extends: *defaults

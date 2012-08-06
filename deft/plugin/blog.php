@@ -1,12 +1,16 @@
 <?php
 
-namespace Deft\Core;
+namespace Deft\Plugin;
 
-class Blog {
+use Deft\Plugin;
+use Deft\Core\Plugin\Configurable;
+use Deft\Core\Config;
+
+class Blog extends Plugin implements Configurable {
 
 	private $config;
 
-	public function __construct($config) {
+	public function setConfig(Config $config) {
 		$this->config = $config;
 	}
 
