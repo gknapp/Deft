@@ -2,7 +2,7 @@
 
 namespace Deft;
 
-use \ReflectionObject;
+use \ReflectionObject, \BadMethodCallException;
 
 abstract class Plugin {
 	
@@ -11,24 +11,16 @@ abstract class Plugin {
 	public function __construct() {}
 
 	public function isIn($line) {
-		return (false !== strpos($line, '{' . $this->getName() . '.'));
-	}
+		$name = $this->getName();
+		$patterns = array('{' . $name . '.', '{' . $name . '}');
 
-	public function interpolate($line) {
-		$plugin = $this;
-		return preg_replace_callback(
-			"/\{" . $this->getPluginName() . "\.([^\}]+)\}/",
-			function ($matches) use ($plugin) {
-				$method = $matches[1];
-				if (!method_exists($plugin, $method)) {
-					throw new \BadMethodCallException(
-						"{$plugin->name}::{$method}(): method not found"
-					);
-				}
-				return $plugin->$method();
-			},
-			$line
-		);
+		foreach ($patterns as $pattern) {
+			if (false !== strpos($line, $pattern)) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	protected function getName() {
@@ -36,11 +28,37 @@ abstract class Plugin {
 			$class = new ReflectionObject($this);
 			$name = strtolower($class->getName());
 			$this->name = str_replace(
-				array('\\', 'deft.plugin'), array('.', ''), $name
+				array('\\', 'deft.plugin.'), array('.', ''), $name
 			);
 		}
 
 		return $this->name;
+	}
+
+	public function interpolate($line) {
+		return preg_replace_callback(
+			"/\{" . $this->getName() . "(?:\.([^\}]+))?\}/", array($this, 'execute'), $line
+		);
+	}
+
+	public function execute($matches) {
+		if (!isset($matches[1])) {
+			if (!method_exists($this, '__invoke')) {
+				throw new BadMethodCallException(
+					'Not implemented: ' . $this->getName() . '::__invoke()'
+				);
+			}
+			return $this();
+		} else {
+			$method = $matches[1];
+			if (!method_exists($this, $method)) {
+				throw new BadMethodCallException(
+					'Method not found: ' . $this->getName() . '::' . $method . '()'
+				);
+			}
+
+			return $this->$method();
+		}
 	}
 
 }
