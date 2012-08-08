@@ -11,7 +11,7 @@ class Blog extends Plugin implements Configurable {
 	private $config;
 
 	public function setConfig(Config $config) {
-		$this->config = $config;
+		$this->config = $config->blog;
 	}
 
 	public function author() {
